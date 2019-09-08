@@ -1,11 +1,13 @@
 package com.example.admin.moogle.view
 
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.admin.moogle.R
+import com.example.admin.moogle.viewmodel.MoogleViewModel
 
 class MediaFragment : Fragment() {
     companion object {
@@ -24,6 +26,7 @@ class MediaFragment : Fragment() {
         arguments?.get(CURRENT_PAGE)?.let { pageNumber ->
             when (pageNumber) {
                 0 -> {
+                    ViewModelProviders.of(this).get(MoogleViewModel::class.java)
                     view = layoutInflater.inflate(R.layout.artist_results_fragment_layout, container, false)
                 }
                 1 -> {

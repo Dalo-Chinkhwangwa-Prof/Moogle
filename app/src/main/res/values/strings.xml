@@ -1,8 +1,10 @@
 <resources>
     <string name="app_name">Moogle</string>
-    <string name="moogle_text">Moogle</string>
     <string name="artist_text">Artist</string>
     <string name="music_text">Music</string>
     <string name="albums_text">Albums</string>
+    <string name="no_music_text">No Music Found</string>
+    <string name="no_albums_text">No Albums Found</string>
+    <string name="no_artists_text">No Artists Found</string>
     <string name="search_for_music_hint">search for music</string>
 </resources>
