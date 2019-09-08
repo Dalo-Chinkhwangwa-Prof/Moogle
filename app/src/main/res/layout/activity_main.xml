@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_bg_color"
+    tools:context=".view.MainActivity">
+
+    <TextView
+        android:id="@+id/moogle_label_textfield"
+        style="@style/AppLabelText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_27dp"
+        android:text="@string/moogle_text"
+        android:textSize="@dimen/dimen_28sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/moogle_music_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/audio_icon_silver"
+        app:layout_constraintBottom_toBottomOf="@id/moogle_label_textfield"
+        app:layout_constraintStart_toEndOf="@id/moogle_label_textfield"
+        app:layout_constraintTop_toTopOf="@id/moogle_label_textfield" />
+
+    <View
+        android:id="@+id/border_line_view"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/dimen_16dp"
+        android:background="@color/main_app_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/moogle_label_textfield" />
+
+    <EditText
+        android:id="@+id/search_edittext"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dimen_16dp"
+        android:layout_marginStart="@dimen/dimen_16dp"
+        android:layout_marginTop="@dimen/dimen_16dp"
+        android:background="@drawable/search_edittext_bg"
+        android:hint="@string/search_for_music_hint"
+        android:imeOptions="actionGo"
+        android:padding="@dimen/dimen_16dp"
+        android:textAlignment="center"
+        android:textColor="@color/just_white"
+        android:textColorHint="@color/light_grey_alpha75"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/border_line_view" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/results_view_pager"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/dimen_16dp"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigatonview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/search_edittext" />
+
+    <View
+        android:id="@+id/bottom_border_line_view"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/dimen_16dp"
+        android:background="@color/main_app_color"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigatonview" />
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/bottom_navigatonview"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        app:itemIconTint="@color/nav_item_color"
+        app:itemTextColor="@color/nav_item_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
+</android.support.constraint.ConstraintLayout>

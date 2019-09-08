@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Moogle</string>
+    <string name="moogle_text">Moogle</string>
+    <string name="artist_text">Artist</string>
+    <string name="music_text">Music</string>
+    <string name="albums_text">Albums</string>
+    <string name="search_for_music_hint">search for music</string>
+</resources>
