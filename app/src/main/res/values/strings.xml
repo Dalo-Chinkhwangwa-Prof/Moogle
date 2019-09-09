@@ -9,8 +9,13 @@
     <string name="search_for_music_hint">search for music</string>
     <string name="artist_name">Artist Name</string>
     <string name="song_title">Song Title</string>
+    <string name="artist">Artist :</string>
+    <string name="album_title">Album Title</string>
     <plurals name="artist_listeners">
         <item quantity="one">%d listener</item>
         <item quantity="other">%d listeners</item>
     </plurals>
+    <string name="unkown_artist_name">Unknown Artist</string>
+    <string name="unkown_song_title">Unknown Song Title</string>
+    <string name="unkown_album_title">Unknown Album Title</string>
 </resources>

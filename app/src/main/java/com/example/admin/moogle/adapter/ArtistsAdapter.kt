@@ -14,8 +14,12 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.admin.moogle.R
 import com.example.admin.moogle.model.artists.Artist
 
-class ArtistsAdapter(val artists: List<Artist>) : RecyclerView.Adapter<ArtistsAdapter.ArtistViewHolder>() {
+class ArtistsAdapter(var artists: MutableList<Artist>, val artistAdapterDelegate: ArtistAdapterDelegate) : RecyclerView.Adapter<ArtistsAdapter.ArtistViewHolder>() {
     lateinit var applicationContext: Context
+    interface ArtistAdapterDelegate{
+        fun artistSelected(artist: Artist)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArtistViewHolder {
         applicationContext = parent.context.applicationContext
         return ArtistViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.artist_item_view, parent, false))
@@ -28,24 +32,23 @@ class ArtistsAdapter(val artists: List<Artist>) : RecyclerView.Adapter<ArtistsAd
 
             artists[position].let { artist ->
                 val drawable: Any? =
-                        if (artist.image[0].text.isNullOrEmpty())
+                        if (artist.image[artist.image.size-1].text.isNullOrEmpty())
                             ContextCompat.getDrawable(applicationContext, R.drawable.artist_icon)
                         else
-                            artist.image[0].text
+                            artist.image[artist.image.size-1].text
                 Glide.with(applicationContext)
-                        .applyDefaultRequestOptions(RequestOptions().centerCrop())
+                        .setDefaultRequestOptions(RequestOptions().centerCrop())
                         .load(drawable)
                         .into(artistImageView)
-                artistName.text = artist.name ?: applicationContext.getText(R.string.artist_name)
+                artistName.text = artist.name ?: applicationContext.getText(R.string.unkown_artist_name)
                 artistListeners.text = applicationContext.resources.getQuantityString(R.plurals.artist_listeners, Integer.parseInt(artist.listeners
                         ?: 0.toString()), Integer.parseInt(artist.listeners ?: 0.toString()))
                 containerView.setOnClickListener { _ ->
-                    //TODO: navigate to artist page
+                    artistAdapterDelegate.artistSelected(artist)
                 }
             }
         }
     }
-
 
     class ArtistViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val artistImageView: ImageView = itemView.findViewById(R.id.artist_imageview)

@@ -13,19 +13,25 @@ interface SearchService {
     fun performAlbumSearch(@Query("method") searchType: String,
                            @Query("album") searchString: String,
                            @Query("api_key") apiKey: String,
-                           @Query("format") format: String): Observable<Albums>
+                           @Query("format") format: String,
+                           @Query("limit") limit: Int,
+                           @Query("page") page: Int): Observable<Albums>
 
     //Track search
     @GET("2.0/?")
     fun performSongSearch(@Query("method") searchType: String,
-                           @Query("song") searchString: String,
-                           @Query("api_key") apiKey: String,
-                           @Query("format") format: String): Observable<Tracks>
+                          @Query("track") searchString: String,
+                          @Query("api_key") apiKey: String,
+                          @Query("format") format: String,
+                          @Query("limit") limit: Int,
+                          @Query("page") page: Int): Observable<Tracks>
 
     //Artist search
     @GET("2.0/?")
     fun performArtistSearch(@Query("method") searchType: String,
-                          @Query("artist") searchString: String,
-                          @Query("api_key") apiKey: String,
-                          @Query("format") format: String): Observable<Artists>
+                            @Query("artist") searchString: String,
+                            @Query("api_key") apiKey: String,
+                            @Query("format") format: String,
+                            @Query("limit") limit: Int,
+                            @Query("page") page: Int): Observable<Artists>
 }

@@ -17,6 +17,7 @@ class SearchFactory {
         const val TRACK_SEARCH = "track.search"
         const val ARTIST_SEARCH = "artist.search"
         const val FORMAT = "json"
+        const val RESULTS_LIMIT = 20
     }
 
     private var searchService: SearchService
@@ -37,13 +38,15 @@ class SearchFactory {
         return retrofitInstance.create(SearchService::class.java)
     }
 
-    fun searchForAlbum(searchText: String): Observable<Albums> {
-        return searchService.performAlbumSearch(ALBUM_SEARCH, searchText, API_KEY, FORMAT)
+    fun searchForAlbum(searchText: String, page: Int): Observable<Albums> {
+        return searchService.performAlbumSearch(ALBUM_SEARCH, searchText, API_KEY, FORMAT, RESULTS_LIMIT, page)
     }
-    fun searchForSong(searchText: String): Observable<Tracks>{
-        return searchService.performSongSearch(TRACK_SEARCH, searchText, API_KEY, FORMAT)
+
+    fun searchForSong(searchText: String, page: Int): Observable<Tracks> {
+        return searchService.performSongSearch(TRACK_SEARCH, searchText, API_KEY, FORMAT, RESULTS_LIMIT, page)
     }
-    fun searchForArtist(searchText: String): Observable<Artists>{
-        return searchService.performArtistSearch(ARTIST_SEARCH, searchText, API_KEY, FORMAT)
+
+    fun searchForArtist(searchText: String, page: Int): Observable<Artists> {
+        return searchService.performArtistSearch(ARTIST_SEARCH, searchText, API_KEY, FORMAT, RESULTS_LIMIT, page)
     }
 }

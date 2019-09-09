@@ -10,11 +10,16 @@ import android.util.Log
 import android.widget.EditText
 import com.example.admin.moogle.R
 import com.example.admin.moogle.adapter.ResultFragmentsPagerAdapter
+import com.example.admin.moogle.model.albums.Album
+import com.example.admin.moogle.model.artists.Artist
+import com.example.admin.moogle.model.tracks.Track
 import com.example.admin.moogle.viewmodel.MoogleViewModel
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), ViewPager.OnPageChangeListener {
+class MainActivity : AppCompatActivity(), ViewPager.OnPageChangeListener,
+        MediaFragment.MediaFragmentDelegate {
+
 
     companion object {
         const val fragmentCount: Int = 3
@@ -30,22 +35,6 @@ class MainActivity : AppCompatActivity(), ViewPager.OnPageChangeListener {
 
         setUpViewPager()
         setUpKeystrokeListener()
-
-        var compositeDisposable = CompositeDisposable()
-
-        compositeDisposable.addAll(
-                viewModel.getAlbums().subscribe {
-                    Log.d("TAG_X", "Album results are in Activity")
-                },
-                viewModel.getSongs()
-                        .subscribe {
-                            Log.d("TAG_X", "Song results are in Activity ")
-                        },
-                viewModel.getArtists()
-                        .subscribe {
-                            Log.d("TAG_X", "Album results are in Activity")
-                        }
-        )
     }
 
     override fun onStop() {
@@ -63,7 +52,7 @@ class MainActivity : AppCompatActivity(), ViewPager.OnPageChangeListener {
                 }
                 override fun onTextChanged(text: CharSequence?, p1: Int, p2: Int, p3: Int) {
                     if(!text.isNullOrEmpty())
-                        viewModel.searchMediaText(text.toString())
+                        viewModel.searchMediaText(text.toString(), 1)
                 }
             })
         }
@@ -93,6 +82,60 @@ class MainActivity : AppCompatActivity(), ViewPager.OnPageChangeListener {
 
     override fun onPageSelected(position: Int) {
         bottom_navigatonview.menu.getItem(position).isChecked = true
+    }
+
+    override fun loadMoreSongs() {
+
+    }
+
+    override fun loadMoreAlbums() {
+    }
+
+    override fun loadMoreArtists() {
+//        viewModel.loadMoreArtists()
+    }
+
+    fun openSongInformationFragmet(song: Track){
+        val songInformationFragment = SongInformationFragment()
+        val bundle = Bundle()
+        bundle.putString(SongInformationFragment.song_name, song.name)
+        bundle.putString(SongInformationFragment.song_image, song.image[song.image.size-1].text ?: "")
+        bundle.putString(SongInformationFragment.song_artist, song.artist)
+        bundle.putString(SongInformationFragment.song_listeners, song.listeners)
+        songInformationFragment.arguments = bundle
+        supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.main_fragment_container, songInformationFragment)
+                .addToBackStack(songInformationFragment.tag)
+                .commit()
+    }
+
+    fun openAlbumInformationFragment(album: Album){
+        val albumInformationFragment = AlbumInformationFragment()
+        val bundle = Bundle()
+        bundle.putString(AlbumInformationFragment.album_name, album.name)
+        bundle.putString(AlbumInformationFragment.cover_image, album.image[album.image.size-1].text ?: "")
+        bundle.putString(AlbumInformationFragment.album_artist, album.artist)
+        albumInformationFragment.arguments = bundle
+        supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.main_fragment_container, albumInformationFragment)
+                .addToBackStack(albumInformationFragment.tag)
+                .commit()
+    }
+    fun openArtistInformation(artist: Artist){
+        val artistInformationFragment = ArtistInformationFragment()
+        val bundle = Bundle()
+        bundle.putString(ArtistInformationFragment.artist_name, artist.name)
+        bundle.putString(ArtistInformationFragment.artist_image, artist.image[artist.image.size-1].text ?: "")
+        bundle.putString(ArtistInformationFragment.artist_listeners, artist.listeners)
+        artistInformationFragment.arguments = bundle
+        supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.main_fragment_container, artistInformationFragment)
+                .addToBackStack(artistInformationFragment.tag)
+                .commit()
+
     }
 }
 

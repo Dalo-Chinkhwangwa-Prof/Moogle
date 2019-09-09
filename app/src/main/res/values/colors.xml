@@ -11,5 +11,6 @@
     <color name="light_grey_alpha75">#BF585858</color>
     <color name="app_bg_color">#000000</color>
     <color name="app_green">#00FF00</color>
+    <color name="lighter_grey">#202020</color>
 
 </resources>

@@ -8,7 +8,7 @@
     android:layout_marginBottom="@dimen/dimen_8dp"
     android:layout_marginEnd="@dimen/dimen_8dp"
     android:layout_marginStart="@dimen/dimen_8dp"
-    app:cardBackgroundColor="@color/dark_grey">
+    app:cardBackgroundColor="@color/lighter_grey">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -22,7 +22,6 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:src="@drawable/audio_icon_silver"
-            android:tint="@color/main_app_color"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -41,20 +40,29 @@
             tools:text="@string/song_title" />
 
         <TextView
+            android:id="@+id/artist_label_textview"
+            style="@style/AppLabelTextInformation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="@dimen/dimen_16dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/artist"
+            app:layout_constraintBottom_toBottomOf="@+id/song_artist_name"
+            app:layout_constraintStart_toEndOf="@id/song_imageview"
+            app:layout_constraintTop_toTopOf="@+id/song_artist_name" />
+        <TextView
             android:id="@+id/song_artist_name"
             style="@style/AppLabelTextInformation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:layout_marginStart="@dimen/dimen_8dp"
             android:layout_marginTop="@dimen/dimen_8dp"
-            android:fontFamily="@font/quick_sand_bold"
             android:padding="@dimen/dimen_8dp"
-            android:textColor="@color/just_white"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/song_imageview"
+            app:layout_constraintStart_toEndOf="@id/artist_label_textview"
             app:layout_constraintTop_toBottomOf="@id/song_name_textview"
-            tools:text="100 listeners" />
+            tools:text="@string/artist_name" />
 
     </android.support.constraint.ConstraintLayout>
 
