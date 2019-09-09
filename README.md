@@ -5,6 +5,9 @@
 **Third Party Libraries**
 
 -[RxJava by JakeWharton](https://github.com/ReactiveX/RxAndroid)
+
 -[Retrofit2 by Square](https://square.github.io/retrofit/)
+
 -[RXRelay 2 by JakeWharton](https://github.com/JakeWharton/RxRelay)
+
 -[Glide by Bumptech](https://github.com/bumptech/glide)
