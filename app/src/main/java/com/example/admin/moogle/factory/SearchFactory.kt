@@ -1,6 +1,8 @@
 package com.example.admin.moogle.factory
 
 import com.example.admin.moogle.model.albums.Albums
+import com.example.admin.moogle.model.artists.Artists
+import com.example.admin.moogle.model.tracks.Tracks
 import io.reactivex.Observable
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -15,9 +17,6 @@ class SearchFactory {
         const val TRACK_SEARCH = "track.search"
         const val ARTIST_SEARCH = "artist.search"
         const val FORMAT = "json"
-        /*val gson: Gson = GsonBuilder()
-                 .setLenient()
-                 .create()*/
     }
 
     private var searchService: SearchService
@@ -38,13 +37,13 @@ class SearchFactory {
         return retrofitInstance.create(SearchService::class.java)
     }
 
-    fun searchForArtist(searchText: String): Observable<Albums> {
+    fun searchForAlbum(searchText: String): Observable<Albums> {
         return searchService.performAlbumSearch(ALBUM_SEARCH, searchText, API_KEY, FORMAT)
     }
-    /*fun searchForSong(searchText: String): Observable<Results>{
-        return searchService.performAlbumSearch(TRACK_SEARCH, searchText, API_KEY)
+    fun searchForSong(searchText: String): Observable<Tracks>{
+        return searchService.performSongSearch(TRACK_SEARCH, searchText, API_KEY, FORMAT)
     }
-    fun searchForAlbum(searchText: String): Observable<Results>{
-        return searchService.performAlbumSearch(ALBUM_SEARCH, searchText, API_KEY)
-    }*/
+    fun searchForArtist(searchText: String): Observable<Artists>{
+        return searchService.performArtistSearch(ARTIST_SEARCH, searchText, API_KEY, FORMAT)
+    }
 }

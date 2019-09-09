@@ -7,4 +7,10 @@
     <string name="no_albums_text">No Albums Found</string>
     <string name="no_artists_text">No Artists Found</string>
     <string name="search_for_music_hint">search for music</string>
+    <string name="artist_name">Artist Name</string>
+    <string name="song_title">Song Title</string>
+    <plurals name="artist_listeners">
+        <item quantity="one">%d listener</item>
+        <item quantity="other">%d listeners</item>
+    </plurals>
 </resources>
